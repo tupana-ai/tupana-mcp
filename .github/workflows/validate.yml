@@ -1,0 +1,30 @@
+name: Validar server.json
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install check-jsonschema
+      - name: Validar contra el schema del MCP Registry
+        run: |
+          SCHEMA=$(python -c "import json;print(json.load(open('server.json'))['\$schema'])")
+          check-jsonschema --schemafile "$SCHEMA" server.json
+      - name: El endpoint MCP responde (sin credenciales espera 401)
+        run: |
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST https://mcp.tupana.ai/mcp \
+            -H "Content-Type: application/json" -H "Accept: application/json, text/event-stream" \
+            -d '{"jsonrpc":"2.0","id":1,"method":"ping"}')
+          echo "HTTP $code"
+          test "$code" = "401" -o "$code" = "200"

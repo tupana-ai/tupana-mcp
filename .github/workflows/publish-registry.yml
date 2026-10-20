@@ -1,0 +1,25 @@
+name: Publicar en el MCP Registry
+
+# Manual a propósito: publicar (o sobrescribir) la ficha del registro oficial es
+# una decisión, no un efecto colateral de un push o un tag.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # GitHub OIDC: autoriza el namespace io.github.tupana-ai/*
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+      - name: Autenticar con GitHub OIDC
+        run: ./mcp-publisher login github-oidc
+      - name: Publicar server.json
+        run: ./mcp-publisher publish
