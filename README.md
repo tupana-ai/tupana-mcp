@@ -230,7 +230,7 @@ En [tupana-ai/tupana-examples](https://github.com/tupana-ai/tupana-examples/tree
 
 - Documentación: [docs.tupana.ai](https://docs.tupana.ai)
 - Portal de desarrolladores: [developers.tupana.ai](https://developers.tupana.ai)
-- SDKs: [Node.js](https://github.com/tupana-ai/tupana-node) · [Python](https://github.com/tupana-ai/tupana-python)
+- SDKs oficiales: Node.js `npm install tupana` ([npm](https://www.npmjs.com/package/tupana) · [GitHub](https://github.com/tupana-ai/tupana-node)) · Python `pip install tupana` ([PyPI](https://pypi.org/project/tupana/) · [GitHub](https://github.com/tupana-ai/tupana-python))
 - Ejemplos: [tupana-ai/tupana-examples](https://github.com/tupana-ai/tupana-examples)
 - Soporte: [contacto@tupana.ai](mailto:contacto@tupana.ai)
 
