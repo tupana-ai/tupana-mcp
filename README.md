@@ -222,6 +222,8 @@ En [tupana-ai/tupana-examples](https://github.com/tupana-ai/tupana-examples/tree
   mcp-publisher publish
   ```
 
+- **Glama:** [`glama.json`](glama.json) declara a los mantenedores. Glama indexa el repositorio como servidor ([glama.ai/mcp/servers/tupana-ai/tupana-mcp](https://glama.ai/mcp/servers/tupana-ai/tupana-mcp)) y el endpoint remoto como conector ([glama.ai/mcp/connectors/io.github.tupana-ai/tupana](https://glama.ai/mcp/connectors/io.github.tupana-ai/tupana)).
+
 - **Smithery:** se publica por URL en [smithery.ai/new](https://smithery.ai/new) (o `smithery mcp publish "https://mcp.tupana.ai/mcp" -n @tupana/tupana`); no requiere archivo de configuración en el repositorio.
 
 ## Recursos
