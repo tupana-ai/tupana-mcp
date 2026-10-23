@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.tupana-ai/tupana",
   "title": "Tupana",
-  "description": "Facturación electrónica chilena (SII), cobranza, conciliación bancaria y contabilidad.",
-  "version": "0.1.0",
+  "description": "Facturación electrónica chilena (SII), cobranza, conciliación bancaria y reportes de ventas.",
+  "version": "0.1.1",
   "websiteUrl": "https://docs.tupana.ai",
   "repository": {
     "url": "https://github.com/tupana-ai/tupana-mcp",
@@ -13,12 +13,16 @@
     {
       "src": "https://cdn.tupana.ai/public/favicon.svg",
       "mimeType": "image/svg+xml",
-      "sizes": ["any"]
+      "sizes": [
+        "any"
+      ]
     },
     {
       "src": "https://www.tupana.ai/apple-touch-icon.png",
       "mimeType": "image/png",
-      "sizes": ["180x180"]
+      "sizes": [
+        "180x180"
+      ]
     }
   ],
   "remotes": [

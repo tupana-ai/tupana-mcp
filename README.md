@@ -1,6 +1,6 @@
 # Tupana MCP
 
-Servidor [MCP](https://modelcontextprotocol.io) remoto de **Tupana**: conecta Claude, ChatGPT, Cursor o cualquier agente compatible con tu facturación electrónica chilena (SII), cobranza, conciliación bancaria y contabilidad.
+Servidor [MCP](https://modelcontextprotocol.io) remoto de **Tupana**: conecta Claude, ChatGPT, Cursor o cualquier agente compatible con tu facturación electrónica chilena (SII), cobranza, conciliación bancaria y reportes de ventas.
 
 ```
 https://mcp.tupana.ai/mcp
@@ -114,9 +114,14 @@ En [tupana-ai/tupana-examples](https://github.com/tupana-ai/tupana-examples/tree
 | `create_sale_invoice` | Crea un **borrador** de factura afecta (33) o exenta (34), con referencias (OC 801, HES). |
 | `create_purchase_invoice` | Crea un borrador de factura de compra (46). |
 | `create_export_invoice` | Crea un borrador de factura de exportación (110). |
+| `create_receipt` | Crea un borrador de boleta (39 o 41). |
+| `create_fee_receipt` | Crea un borrador de boleta de honorarios. |
+| `create_dispatch_guide` | Crea un borrador de guía de despacho (52). |
 | `create_credit_note` | Crea una nota de crédito (61) que referencia una factura (anulación o corrección). |
-| `get_document_preview` | Vista previa en PDF de un borrador, para que la revises. |
-| `emit_document` | **Emite al SII** un borrador ya revisado. Exige vista previa previa. |
+| `create_debit_note` | Crea una nota de débito (56) que referencia una factura. |
+| `parse_spreadsheet_to_invoices` | Convierte una planilla en borradores de factura (facturación masiva). |
+| `get_document_preview` / `get_document_previews` | Vista previa en PDF de uno o varios borradores, para que los revises. |
+| `emit_document` / `emit_documents` | **Emite al SII** uno o varios borradores ya revisados. Exige vista previa previa. |
 | `send_document_email` | Reenvía un documento emitido por correo. |
 | `create_scheduled_invoice` | Crea una factura programada (recurrente). |
 | `get_scheduled_documents` | Lista los documentos programados. |
@@ -132,18 +137,17 @@ En [tupana-ai/tupana-examples](https://github.com/tupana-ai/tupana-examples/tree
 | `get_suppliers` | Proveedores según las facturas de compra recibidas. |
 | `get_top_clients` | Ranking de clientes por monto o cantidad facturada. |
 | `get_top_products` | Ranking de productos o ítems vendidos. |
+| `get_cross_sell_clients` | Clientes que compraron un producto pero no otro. |
 
 ### Reportes, libros e impuestos
 
 | Herramienta | Qué hace |
 | --- | --- |
-| `report_documents` | Reportes y análisis sobre documentos. |
+| `report_documents` | Totales de documentos emitidos por mes, tipo, cliente o estado. |
 | `get_monthly_revenue` | Serie mensual de ventas. |
 | `get_sii_books` | Libros de compra y venta del SII. |
 | `get_f29_summary` | Resumen del F29 del período. |
 | `get_tax_summary` | Resumen de IVA crédito y débito fiscal. |
-| `generate_chart` | Genera un gráfico a partir de datos. |
-| `generate_multi_series_chart` | Gráfico con varias series (ej. ventas vs. compras). |
 
 ### Cobranza y conciliación bancaria
 
@@ -156,17 +160,13 @@ En [tupana-ai/tupana-examples](https://github.com/tupana-ai/tupana-examples/tree
 | `reconcile_movement` | Concilia un movimiento con una o más facturas. |
 | `get_reconciliations` | Historial de conciliaciones. |
 
-### Contabilidad
+### Cesión de facturas (factoring)
 
 | Herramienta | Qué hace |
 | --- | --- |
-| `get_journal_entries` | Libro diario: asientos en un rango de fechas. |
-| `get_ledger` | Libro mayor de una cuenta, con saldo acumulado. |
-| `get_balance_sheet` | Balance por sección (activo, pasivo, patrimonio). |
-| `get_income_statement` | Estado de resultados. |
-| `get_chart_of_accounts` | Plan de cuentas. |
-| `get_account_balance` | Saldo actual de una cuenta. |
-| `create_journal_entry` | Crea un asiento contable manual. |
+| `prepare_cession` | Prepara la cesión de una factura emitida a un factoring. |
+| `execute_cession` | Ejecuta en el SII una cesión ya preparada y revisada. |
+| `get_cession_status` | Estado de una cesión. |
 
 ### Base pública de empresas del SII
 
@@ -242,4 +242,4 @@ La documentación y los archivos de este repositorio están bajo licencia [MIT](
 
 ## English summary
 
-Remote MCP server for **Tupana** — Chilean electronic invoicing (SII), collections, bank reconciliation and accounting — at `https://mcp.tupana.ai/mcp` (Streamable HTTP, OAuth 2.1 with PKCE and dynamic client registration; scopes `tupana:read` / `tupana:write`). Add it as a custom connector in Claude, with `claude mcp add --transport http tupana https://mcp.tupana.ai/mcp` in Claude Code, via `mcp.json` in Cursor or VS Code, or as a developer-mode connector in ChatGPT. Irreversible actions (issuing to the SII, sending email, reconciling) are designed to require confirmation: the agent creates a draft, shows a PDF preview and only issues with `emit_document` after you approve. Registry metadata lives in [`server.json`](server.json) (`io.github.tupana-ai/tupana`).
+Remote MCP server for **Tupana**: Chilean electronic invoicing (SII), collections, bank reconciliation, sales reports and invoice cession, at `https://mcp.tupana.ai/mcp` (Streamable HTTP, OAuth 2.1 with PKCE and dynamic client registration; scopes `tupana:read` / `tupana:write`). Add it as a custom connector in Claude, with `claude mcp add --transport http tupana https://mcp.tupana.ai/mcp` in Claude Code, via `mcp.json` in Cursor or VS Code, or as a developer-mode connector in ChatGPT. Irreversible actions (issuing to the SII, sending email, reconciling) are designed to require confirmation: the agent creates a draft, shows a PDF preview and only issues with `emit_document` after you approve. Registry metadata lives in [`server.json`](server.json) (`io.github.tupana-ai/tupana`).
