@@ -1,20 +1,35 @@
 {
   "identifier": "tupana-ai-tupana-mcp",
   "name": "Tupana",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Tupana",
   "authorUrl": "https://github.com/tupana-ai",
   "homepage": "https://developers.tupana.ai",
   "cloudEndpoint": "https://mcp.tupana.ai/mcp",
   "icon": "https://www.tupana.ai/apple-touch-icon.png",
-  "description": "Chilean electronic invoicing (SII), receivables, bank reconciliation and accounting for AI agents. Invoices are created as drafts and issued only after your approval. Remote Streamable HTTP server with OAuth 2.1.",
-  "tags": ["invoicing", "chile", "sii", "dte", "accounting", "bank-reconciliation", "finance"],
+  "description": "Chilean electronic invoicing (SII), receivables, bank reconciliation and sales reports for AI agents. Invoices are created as drafts and issued only after your approval. Remote Streamable HTTP server with OAuth 2.1.",
+  "tags": [
+    "invoicing",
+    "chile",
+    "sii",
+    "dte",
+    "electronic-invoicing",
+    "bank-reconciliation",
+    "finance"
+  ],
   "localizations": [
     {
       "locale": "es-ES",
       "name": "Tupana",
-      "description": "Facturación electrónica chilena (SII), cobranza, conciliación bancaria y contabilidad para agentes de IA. Las facturas se crean como borrador y se emiten solo tras tu aprobación.",
-      "tags": ["facturación electrónica", "chile", "sii", "dte", "contabilidad", "conciliación bancaria"]
+      "description": "Facturación electrónica chilena (SII), cobranza, conciliación bancaria y reportes de ventas para agentes de IA. Las facturas se crean como borrador y se emiten solo tras tu aprobación.",
+      "tags": [
+        "facturación electrónica",
+        "chile",
+        "sii",
+        "dte",
+        "cobranza",
+        "conciliación bancaria"
+      ]
     }
   ]
 }
